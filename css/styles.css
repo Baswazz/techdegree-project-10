@@ -25,6 +25,10 @@ h1 {
 }
 
 #employees {
+    margin-bottom: 1rem;
+}
+
+#employees ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -35,7 +39,7 @@ h1 {
     grid-row-gap: 1rem;
 }
 
-#employees li {
+#employees ul li {
     overflow: hidden;
     background-color: #fff;
     border-radius: 6px;
@@ -47,7 +51,7 @@ h1 {
     align-items: center;
 }
 
-#employees li:hover {
+#employees ul li:hover {
     border-color: #4ECDC4;
 }
 
@@ -67,27 +71,37 @@ h1 {
 }
 
 /* ------ Overlay ------ */
+
 .overlay {
     background-color: rgba(0, 0, 0, .3);
     position: fixed;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    transition: background-color .3s;
+    z-index: 10;
+    transition: .3s;
+    display: flex;
 }
 
 /* ------ Modal ------ */
 .modal {
     background-color: #fff;
     border: 2px solid #dfdfdf;
+    padding: 1rem;
+    margin: auto 1rem;
+    border-radius: 6px;
 }
 
 @media (min-width: 768px) {
-    #employees {
+    #employees ul {
         display: grid;
         grid-template-columns: 1fr 1fr;
+    }
+
+    .modal {
+        width: 50%;
+        margin: auto;
     }
 }
 
@@ -97,10 +111,19 @@ h1 {
         margin: 0 auto;
         max-width: 1300px;
     }
+
     #employees {
+        margin-bottom: 2rem;
+    }
+
+    #employees ul {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: 2rem;
         grid-row-gap: 2rem;
+    }
+
+    .modal {
+        width: 33.333333333%;
     }
 }

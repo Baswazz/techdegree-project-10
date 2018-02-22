@@ -61,12 +61,14 @@ h1 {
     font-size: 1.25rem;
 }
 
-#employees img {
-    border-radius: 50%;
+#employees img,
+.modal img {
     margin-right: 1rem;
+    border-radius: 50%;
 }
 
-#employees span {
+#employees span,
+.modal span {
     display: block;
 }
 
@@ -91,6 +93,7 @@ h1 {
     padding: 1rem;
     margin: auto 1rem;
     border-radius: 6px;
+    text-align: center;
 }
 
 @media (min-width: 768px) {

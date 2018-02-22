@@ -7,7 +7,7 @@ body {
     font-size: 16px;
     font-weight: 400;
     color: #83898d;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 h1 {
@@ -17,6 +17,10 @@ h1 {
     font-weight: 600;
     letter-spacing: .15rem;
     margin: 3.5rem 0 2rem;
+}
+
+h2 {
+    color: #404a51;
 }
 
 .container {
@@ -45,7 +49,7 @@ h1 {
     border-radius: 6px;
     border: 2px solid #dfdfdf;
     padding: 1rem;
-    transition: border-color .3s;
+    transition: .3s ease-out;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -53,10 +57,10 @@ h1 {
 
 #employees ul li:hover {
     border-color: #4ECDC4;
+    background-color: rgba(78,205,196, .05);
 }
 
 #employees h2 {
-    color: #404a51;
     margin: 0;
     font-size: 1.25rem;
 }
@@ -73,27 +77,86 @@ h1 {
 }
 
 /* ------ Overlay ------ */
-
 .overlay {
-    background-color: rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, .5);
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 10;
+    z-index: 1;
     transition: .3s;
-    display: flex;
+    display: none;
+    padding-top: 5rem;
 }
 
 /* ------ Modal ------ */
 .modal {
     background-color: #fff;
     border: 2px solid #dfdfdf;
-    padding: 1rem;
+    padding: 2rem;
     margin: auto 1rem;
     border-radius: 6px;
     text-align: center;
+    position: relative;
+    line-height: 2;
+    z-index: 2;
+}
+
+.modal h2 {
+    margin: .5rem 0 0;
+}
+
+.modal .close {
+    top: 0;
+    right: 1rem;
+}
+
+.modal .close:hover,
+.modal .close:focus {
+    opacity: .5;
+    cursor: pointer;
+}
+
+.modal .close,
+.modal .arrow-left,
+.modal .arrow-right {
+    color: #4a4a4a;
+    font-size: 28px;
+    position: absolute;
+    bottom: 1rem;
+    transition: opacity .2s;
+}
+
+.modal .arrow-left,
+.modal .arrow-right {
+    background-color: rgba(0, 0, 0, .1);
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 6px;
+    transition: background-color .2s;
+}
+
+.modal .arrow-left {
+    left: 1rem;
+}
+.modal .arrow-right {
+    right: 1rem;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.modal .arrow-left:hover,
+.modal .arrow-left:focus,
+.modal .arrow-right:hover,
+.modal .arrow-right:focus {
+    background-color: rgba(0, 0, 0, .15);
+    cursor: pointer;
+}
+
+.line {
+    border-bottom: 1px solid #dfdfdf;
+    margin: 2rem 0;
 }
 
 @media (min-width: 768px) {
@@ -108,13 +171,15 @@ h1 {
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
     .container {
         width: 90%;
         margin: 0 auto;
         max-width: 1300px;
     }
+}
 
+@media (min-width: 1300px) {
     #employees {
         margin-bottom: 2rem;
     }

@@ -26,10 +26,7 @@ $.getJSON(randomUserAPI, randomUserOptions, function(data) {
         const employeeIDPrev = employeeID - 1;
 
         
-        let employeeHTML = '<span class="close">&times;</span>';
-        employeeHTML += '<span class="arrow-left">&larr;</span>';
-        employeeHTML += '<span class="arrow-right">&rarr;</span>';
-        employeeHTML += '<img src="' + employees[employeeID].picture.large + '">';
+        let employeeHTML = '<img src="' + employees[employeeID].picture.large + '">';
         employeeHTML += '<h2>' + employees[employeeID].name.first + ' ' + employees[employeeID].name.last + '</h2>';
         employeeHTML += '<span>' + employees[employeeID].login.username + '</span>';
         employeeHTML += '<span>' + employees[employeeID].email + '</span>';

@@ -4,6 +4,7 @@ const randomUserOptions = {
 };
     
 function employees(data) {
+    console.log(data.results);
     let employeeHTML = '<ul>';
     $.each(data.results, function(i, employee) {
         employeeHTML += '<li data-employee-id="' + i + '"><img src="' + employee.picture.large + '">';
@@ -17,10 +18,7 @@ function employees(data) {
     // Employee details
 
     function displayEmployee(employee, id) {
-        let employeeHTML = '<span class="close">&times;</span>';
-        employeeHTML += '<span class="arrow-left">&larr;</span>';
-        employeeHTML += '<span class="arrow-right">&rarr;</span>';
-        employeeHTML += '<img src="' + employee[id].picture.large + '">';
+        employeeHTML = '<img src="' + employee[id].picture.large + '">';
         employeeHTML += '<h2>' + employee[id].name.first + ' ' + employee[id].name.last + '</h2>';
         employeeHTML += '<span>' + employee[id].login.username + '</span>';
         employeeHTML += '<span>' + employee[id].email + '</span>';
@@ -32,25 +30,52 @@ function employees(data) {
         return employeeHTML;
     };
 
+    let employeeID;
     // Show modal
     $('#employees li').click(function() {
-        const employeeID = $(this).data('employeeId');
-        $('.modal').append(displayEmployee(data.results, employeeID));
+        employeeID = $(this).data('employeeId');
         $('.overlay').css('display', 'block');
         $('body').css('overflow','hidden');
+        $('.modal-content').append(displayEmployee(data.results, employeeID));
+        if (employeeID === 0) {
+            $('.arrow-left').css('display', 'none');
+        } else if (employeeID === data.results.length - 1) {
+            $('.arrow-right').css('display', 'none');
+        }
     });
 
     // Close modal
     $('.close').click(function() {
-        console.log('test');
+        $('.overlay').css('display', 'none');
+        $('body').css('overflow', '');
+        $('.modal-content').empty();
+    });
+
+    $('.arrow-left').click(function() {
+        employeeID += -1;
+        console.log(employeeID);
+        $('.modal-content').empty();
+        $('.modal-content').append(displayEmployee(data.results, employeeID));
+        if (employeeID !== 0) {
+            $('.arrow-left').css('display', 'none');
+        } else {
+            $('.arrow-left').css('display', 'block');
+        }
+    });
+
+    $('.arrow-right').click(function() {
+        employeeID += 1;
+        console.log(employeeID);
+        $('.modal-content').empty();
+        $('.modal-content').append(displayEmployee(data.results, employeeID));
+        if (employeeID === data.results.length - 1) {
+            $('.arrow-right').css('display', 'none');
+        } else {
+            $('.arrow-right').css('display', 'block');
+        }
     });
 
 };
-
-
-$('.arrow-left, .arrow-right').click(function(evt) {
-    console.log('test');
-});
 
 $.getJSON(randomUserAPI, randomUserOptions, employees);
 

@@ -4,7 +4,7 @@ const randomUserOptions = {
 };
     
 function employees(data) {
-    console.log(data.results);
+    // console.log(data.results);
     let employeeHTML = '<ul>';
     $.each(data.results, function(i, employee) {
         employeeHTML += '<li data-employee-id="' + i + '"><img src="' + employee.picture.large + '">';
@@ -53,7 +53,6 @@ function employees(data) {
 
     $('.arrow-left').click(function() {
         employeeID += -1;
-        console.log(employeeID);
         $('.modal-content').empty();
         $('.modal-content').append(displayEmployee(data.results, employeeID));
         if (employeeID !== 0) {
@@ -65,7 +64,6 @@ function employees(data) {
 
     $('.arrow-right').click(function() {
         employeeID += 1;
-        console.log(employeeID);
         $('.modal-content').empty();
         $('.modal-content').append(displayEmployee(data.results, employeeID));
         if (employeeID === data.results.length - 1) {
@@ -78,9 +76,3 @@ function employees(data) {
 };
 
 $.getJSON(randomUserAPI, randomUserOptions, employees);
-
-
-
-
-
-

@@ -125,6 +125,7 @@ h2 {
     font-size: 28px;
     position: absolute;
     transition: opacity .2s;
+    user-select: none;
 }
 
 .modal .arrow-left,
@@ -157,6 +158,43 @@ h2 {
 .line {
     border-bottom: 1px solid #dfdfdf;
     margin: 2rem 0;
+}
+
+.search {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+input[type="search"] {
+    border: 2px solid #dfdfdf;
+    padding: .5rem;
+    border-radius: 6px;
+    transition: .3s ease-out;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+input[type="search"]:focus {
+    border: 2px solid #4ECDC4;
+}
+
+.btn {
+    background-color: #e5e5e5;
+    border: 1px solid #dfdfdf;
+    padding: .5rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+input[type="search"]:focus,
+.btn:focus {
+    outline: none;
 }
 
 @media (min-width: 768px) {

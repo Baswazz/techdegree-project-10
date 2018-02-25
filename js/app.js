@@ -4,7 +4,7 @@ const randomUserOptions = {
 };
     
 function employees(data) {
-    // console.log(data.results);
+    console.log(data.results);
     let employeeHTML = '<ul>';
     $.each(data.results, function(i, employee) {
         employeeHTML += '<li data-employee-id="' + i + '"><img src="' + employee.picture.large + '">';
@@ -25,7 +25,7 @@ function employees(data) {
         employeeHTML += '<span>' + employee[id].location.city + '</span>';
         employeeHTML += '<span class="line"></span>';
         employeeHTML += '<span>' + employee[id].cell + '</span>';
-        employeeHTML += '<span>' + employee[id].location.street + ', ' + employee[id].location.postcode + '</span>';
+        employeeHTML += '<span>' + employee[id].location.street + ', ' + employee[id].location.postcode + ', ' + employee[id].nat + '</span>';
         employeeHTML += '<span>' + employee[id].dob + '</span>';
         return employeeHTML;
     };

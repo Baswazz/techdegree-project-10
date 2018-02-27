@@ -4,7 +4,7 @@ const randomUserOptions = {
 };
     
 function employees(data) {
-    console.log(data.results);
+    // console.log(data.results);
     let employeeHTML = '<ul>';
     $.each(data.results, function(i, employee) {
         employeeHTML += '<li data-employee-id="' + i + '"><img src="' + employee.picture.large + '">';
@@ -37,11 +37,6 @@ function employees(data) {
         $('.overlay').css('display', 'block');
         $('body').css('overflow','hidden');
         $('.modal-content').append(displayEmployee(data.results, employeeID));
-        if (employeeID === 0) {
-            $('.arrow-left').css('display', 'none');
-        } else if (employeeID === data.results.length - 1) {
-            $('.arrow-right').css('display', 'none');
-        }
     });
 
     // Close modal
@@ -51,25 +46,29 @@ function employees(data) {
         $('.modal-content').empty();
     });
 
-    $('.arrow-left').click(function() {
-        employeeID += -1;
-        $('.modal-content').empty();
-        $('.modal-content').append(displayEmployee(data.results, employeeID));
+    // Modal navigation
+    $('.arrow-left').click(function() {        
         if (employeeID !== 0) {
-            $('.arrow-left').css('display', 'none');
+            employeeID += -1;
+            $('.modal-content').empty();
+            $('.modal-content').append(displayEmployee(data.results, employeeID));
         } else {
-            $('.arrow-left').css('display', 'block');
+            // Show last employee
+            employeeID = employeeID = data.results.length - 1;
+            $('.modal-content').empty();
+            $('.modal-content').append(displayEmployee(data.results, employeeID));
         }
     });
 
     $('.arrow-right').click(function() {
-        employeeID += 1;
-        $('.modal-content').empty();
-        $('.modal-content').append(displayEmployee(data.results, employeeID));
-        if (employeeID === data.results.length - 1) {
-            $('.arrow-right').css('display', 'none');
+        if (employeeID !== data.results.length - 1) {
+            employeeID += 1;
+            $('.modal-content').empty();
+            $('.modal-content').append(displayEmployee(data.results, employeeID));
         } else {
-            $('.arrow-right').css('display', 'block');
+            employeeID = 0;
+            $('.modal-content').empty();
+            $('.modal-content').append(displayEmployee(data.results, employeeID));
         }
     });
 

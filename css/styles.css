@@ -44,7 +44,6 @@ h2 {
 }
 
 #employees ul li {
-    overflow: hidden;
     background-color: #fff;
     border-radius: 6px;
     border: 2px solid #dfdfdf;

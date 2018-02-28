@@ -72,21 +72,27 @@ function employees(data) {
         }
     });
 
-    $('form').submit(function(evt) {
-        evt.preventDefault();
-        console.log('test');
-        const searchField = $('#search');
-        const employeeName = $('.employee-name');
-        $.each(employeeName, function() {
-            console.log($(this).text());
-            if (!searchField.val().includes(employeeName)) {
-                $('#employee-name').parents('li').css('display', 'none');
-
-            }
-        });
-
-    });
-
 };
 
 $.getJSON(randomUserAPI, randomUserOptions, employees);
+
+// Search Employees
+$('form').submit(function(evt) {
+    evt.preventDefault();
+    const searchField = $('#search').val();
+    const employeeNames = $('.employee-name');
+
+    $.each(employeeNames, function() {
+        $(this).parents('li').css('display', '');
+        if (!$(this).text().includes(searchField)) {
+            $(this).parents('li').css('display', 'none');
+        }
+    }); // end each
+
+});
+
+// Reset search
+$('#reset').click(function(evt) {
+    evt.preventDefault();
+    $('#employees li').css('display', '');
+});

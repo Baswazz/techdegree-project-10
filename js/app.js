@@ -8,7 +8,7 @@ function employees(data) {
     let employeeHTML = '<ul>';
     $.each(data.results, function(i, employee) {
         employeeHTML += '<li data-employee-id="' + i + '"><img src="' + employee.picture.large + '">';
-        employeeHTML += '<div><h2>' + employee.name.first + ' ' + employee.name.last + '</h2>';
+        employeeHTML += '<div><h2 class="employee-name">' + employee.name.first + ' ' + employee.name.last + '</h2>';
         employeeHTML += '<span>' + employee.email + '</span>';
         employeeHTML += '<span>' + employee.location.city + '</span></div></li>';
     }); // end each
@@ -70,6 +70,21 @@ function employees(data) {
             $('.modal-content').empty();
             $('.modal-content').append(displayEmployee(data.results, employeeID));
         }
+    });
+
+    $('form').submit(function(evt) {
+        evt.preventDefault();
+        console.log('test');
+        const searchField = $('#search');
+        const employeeName = $('.employee-name');
+        $.each(employeeName, function() {
+            console.log($(this).text());
+            if (!searchField.val().includes(employeeName)) {
+                $('#employee-name').parents('li').css('display', 'none');
+
+            }
+        });
+
     });
 
 };
